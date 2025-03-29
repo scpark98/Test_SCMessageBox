@@ -8,6 +8,7 @@
 #include "Test_SCMessageBoxDlg.h"
 #include "afxdialogex.h"
 
+#include "../../Common/Functions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -66,6 +67,9 @@ BEGIN_MESSAGE_MAP(CTestSCMessageBoxDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDOK, &CTestSCMessageBoxDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDCANCEL, &CTestSCMessageBoxDlg::OnBnClickedCancel)
+	ON_WM_WINDOWPOSCHANGED()
 END_MESSAGE_MAP()
 
 
@@ -101,9 +105,12 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	RestoreWindowPosition(&theApp, this);
+
 	m_message.create(this);
-	m_message.set_message(_T("test messagebox"));
-	int res = m_message.DoModal();
+	int res = m_message.DoModal(_T("test messagebox"));
+	TRACE(_T("res = %d\n"), res);
+
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -157,3 +164,23 @@ HCURSOR CTestSCMessageBoxDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+void CTestSCMessageBoxDlg::OnBnClickedOk()
+{
+	int res = m_message.DoModal();
+	TRACE(_T("res = %d\n"), res);
+}
+
+void CTestSCMessageBoxDlg::OnBnClickedCancel()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnCancel();
+}
+
+void CTestSCMessageBoxDlg::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+	CDialogEx::OnWindowPosChanged(lpwndpos);
+
+	// TODO: Add your message handler code here
+	SaveWindowPosition(&theApp, this);
+}
