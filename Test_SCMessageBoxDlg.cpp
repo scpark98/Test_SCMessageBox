@@ -105,10 +105,11 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	RestoreWindowPosition(&theApp, this);
+	RestoreWindowPosition(&theApp, this, _T(""), false, false);
 
-	m_message.create(this);
-	int res = m_message.DoModal(_T("test messagebox"));
+	m_message.create(this, _T("Title Text"), IDR_MAINFRAME);
+	m_message.set_color_theme(CSCColorTheme::color_theme_default);
+	int res = m_message.DoModal(_T("Test MessageBox"));
 	TRACE(_T("res = %d\n"), res);
 
 
