@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Common/CDialog/CSCMessageBox/SCMessageBox.h"
+#include "../../Common/messagebox/CSCMessageBox/SCMessageBox.h"
 
 // CTestSCMessageBoxDlg 대화 상자
 class CTestSCMessageBoxDlg : public CDialogEx
@@ -40,4 +40,6 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+	CEdit m_edit_message;
+	afx_msg void OnEnChangeEditMessage();
 };

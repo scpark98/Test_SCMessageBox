@@ -61,6 +61,7 @@ CTestSCMessageBoxDlg::CTestSCMessageBoxDlg(CWnd* pParent /*=nullptr*/)
 void CTestSCMessageBoxDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_EDIT_MESSAGE, m_edit_message);
 }
 
 BEGIN_MESSAGE_MAP(CTestSCMessageBoxDlg, CDialogEx)
@@ -70,6 +71,7 @@ BEGIN_MESSAGE_MAP(CTestSCMessageBoxDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CTestSCMessageBoxDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &CTestSCMessageBoxDlg::OnBnClickedCancel)
 	ON_WM_WINDOWPOSCHANGED()
+	ON_EN_CHANGE(IDC_EDIT_MESSAGE, &CTestSCMessageBoxDlg::OnEnChangeEditMessage)
 END_MESSAGE_MAP()
 
 
@@ -108,9 +110,16 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	RestoreWindowPosition(&theApp, this, _T(""), false, false);
 
 	m_message.create(this, _T("Title Text"), IDR_MAINFRAME);
-	m_message.set_color_theme(CSCColorTheme::color_theme_default);
-	int res = m_message.DoModal(_T("Test MessageBox"));
-	TRACE(_T("res = %d\n"), res);
+	m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
+
+	CString test_msg = _T("Test MessageBox\r\nNext Line");
+	m_edit_message.SetWindowText(test_msg);
+
+	//m_message.set_message(test_msg, MB_OKCANCEL);
+	//m_message.ShowWindow(SW_SHOW);
+	//m_message.set_align(SS_LEFT | SS_CENTERIMAGE);
+	int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
+	//TRACE(_T("res = %d\n"), res);
 
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
@@ -184,4 +193,11 @@ void CTestSCMessageBoxDlg::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 
 	// TODO: Add your message handler code here
 	SaveWindowPosition(&theApp, this);
+}
+
+void CTestSCMessageBoxDlg::OnEnChangeEditMessage()
+{
+	CString text;
+	m_edit_message.GetWindowText(text);
+	m_message.set_message(text);
 }
