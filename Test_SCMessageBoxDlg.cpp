@@ -109,7 +109,7 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	RestoreWindowPosition(&theApp, this, _T(""), false, false);
 
-	m_message.create(this, _T("Title Text"), IDR_MAINFRAME);
+	m_message.create(this, _T("Title Text"));// , IDR_MAINFRAME);
 	m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
 
 	CString test_msg = _T("Test MessageBox\r\nNext Line");
