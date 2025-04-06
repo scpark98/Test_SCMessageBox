@@ -62,6 +62,9 @@ void CTestSCMessageBoxDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT_MESSAGE, m_edit_message);
+	DDX_Control(pDX, IDOK, m_button_ok);
+	DDX_Control(pDX, IDCANCEL, m_button_cancel);
+	DDX_Control(pDX, IDC_BUTTON_TEST, m_button_test);
 }
 
 BEGIN_MESSAGE_MAP(CTestSCMessageBoxDlg, CDialogEx)
@@ -118,7 +121,9 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	//m_message.set_message(test_msg, MB_OKCANCEL);
 	//m_message.ShowWindow(SW_SHOW);
 	//m_message.set_align(SS_LEFT | SS_CENTERIMAGE);
-	int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
+	//int res = m_message.DoModal(_T("Test MessageBox"));//, MB_OKCANCEL);
+	//int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
+	int res = m_message.DoModal(_T("Test MessageBox"), MB_YESNOCANCEL);
 	//TRACE(_T("res = %d\n"), res);
 
 

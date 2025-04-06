@@ -42,4 +42,7 @@ public:
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	CEdit m_edit_message;
 	afx_msg void OnEnChangeEditMessage();
+	CGdiButton m_button_ok;
+	CGdiButton m_button_cancel;
+	CGdiButton m_button_test;
 };
