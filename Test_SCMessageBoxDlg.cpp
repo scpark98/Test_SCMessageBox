@@ -112,18 +112,18 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	RestoreWindowPosition(&theApp, this, _T(""), false, false);
 
-	m_message.create(this, _T("Title Text"));// , IDR_MAINFRAME);
+	m_message.create(this, _T("Title Text"), IDR_MAINFRAME, false);
 	m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
 
 	CString test_msg = _T("Test MessageBox\r\nNext Line");
 	m_edit_message.SetWindowText(test_msg);
 
-	//m_message.set_message(test_msg, MB_OKCANCEL);
-	//m_message.ShowWindow(SW_SHOW);
+	m_message.set_message(test_msg, MB_YESNO | MB_ICONQUESTION, 0, SS_LEFT | SS_CENTERIMAGE);
+	m_message.ShowWindow(SW_SHOW);
 	//m_message.set_align(SS_LEFT | SS_CENTERIMAGE);
 	//int res = m_message.DoModal(_T("Test MessageBox"));//, MB_OKCANCEL);
 	//int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
-	int res = m_message.DoModal(_T("Test MessageBox"), MB_YESNOCANCEL);
+	//int res = m_message.DoModal(_T("Test MessageBox"), MB_YESNOCANCEL);
 	//TRACE(_T("res = %d\n"), res);
 
 

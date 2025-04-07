@@ -76,12 +76,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin/</OutDir>
+    <OutDir>$(ProgramFiles)/bin/</OutDir>
     <IntDir>$(Configuration)/$(PlatformShortName)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>bin/</OutDir>
+    <OutDir>$(ProgramFiles)/bin/</OutDir>
     <IntDir>$(Configuration)/$(PlatformShortName)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
