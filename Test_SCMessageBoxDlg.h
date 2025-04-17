@@ -15,6 +15,7 @@ public:
 
 protected:
 	CSCMessageBox	m_message;
+	LRESULT			on_message_CSCMessageBox(WPARAM wParam, LPARAM lParam);
 
 public:
 // 대화 상자 데이터입니다.

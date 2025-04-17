@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(CTestSCMessageBoxDlg, CDialogEx)
 	ON_BN_CLICKED(IDCANCEL, &CTestSCMessageBoxDlg::OnBnClickedCancel)
 	ON_WM_WINDOWPOSCHANGED()
 	ON_EN_CHANGE(IDC_EDIT_MESSAGE, &CTestSCMessageBoxDlg::OnEnChangeEditMessage)
+	ON_REGISTERED_MESSAGE(Message_CSCMessageBox, &CTestSCMessageBoxDlg::on_message_CSCMessageBox)
 END_MESSAGE_MAP()
 
 
@@ -118,8 +119,7 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	CString test_msg = _T("Test MessageBox\r\nNext Line");
 	m_edit_message.SetWindowText(test_msg);
 
-	m_message.set_message(test_msg, MB_YESNO | MB_ICONQUESTION, 0, SS_LEFT | SS_CENTERIMAGE);
-	m_message.ShowWindow(SW_SHOW);
+	m_message.set_message(test_msg, MB_YESNO | MB_ICONQUESTION, 0, SS_CENTER | SS_CENTERIMAGE);
 	//m_message.set_align(SS_LEFT | SS_CENTERIMAGE);
 	//int res = m_message.DoModal(_T("Test MessageBox"));//, MB_OKCANCEL);
 	//int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
@@ -182,8 +182,11 @@ HCURSOR CTestSCMessageBoxDlg::OnQueryDragIcon()
 
 void CTestSCMessageBoxDlg::OnBnClickedOk()
 {
-	int res = m_message.DoModal();
-	TRACE(_T("res = %d\n"), res);
+	//modeless로 create()했어도 DoModal()을 호출하면 modal로 동작한다.
+	//int res = m_message.DoModal();
+	//TRACE(_T("res = %d\n"), res);
+
+	m_message.set_message(_T("OK Button Clicked"));
 }
 
 void CTestSCMessageBoxDlg::OnBnClickedCancel()
@@ -205,4 +208,13 @@ void CTestSCMessageBoxDlg::OnEnChangeEditMessage()
 	CString text;
 	m_edit_message.GetWindowText(text);
 	m_message.set_message(text);
+}
+
+LRESULT CTestSCMessageBoxDlg::on_message_CSCMessageBox(WPARAM wParam, LPARAM lParam)
+{
+	CSCMessageBox* msgBox = (CSCMessageBox*)wParam;
+	int res = (int)lParam;
+
+	TRACE(_T("msgBox = %p, res = %d\n"), msgBox, res);
+	return 0;
 }
