@@ -115,11 +115,11 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 
 	m_message.create(this, _T("Title Text"), IDR_MAINFRAME, false);
 	m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
-
+	m_message.use_typed_title_back_color();
 	CString test_msg = _T("Test MessageBox\r\nNext Line");
 	m_edit_message.SetWindowText(test_msg);
 
-	m_message.set_message(test_msg, MB_YESNO | MB_ICONQUESTION, 0, SS_CENTER | SS_CENTERIMAGE);
+	m_message.set_message(test_msg, MB_YESNO | MB_ICONEXCLAMATION);// , 0, SS_CENTER | SS_CENTERIMAGE);
 	//m_message.set_align(SS_LEFT | SS_CENTERIMAGE);
 	//int res = m_message.DoModal(_T("Test MessageBox"));//, MB_OKCANCEL);
 	//int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
