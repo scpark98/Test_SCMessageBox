@@ -113,17 +113,18 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	RestoreWindowPosition(&theApp, this, _T(""), false, false);
 
+	/*
 	std::deque<CString> dq;
 	get_exact_token_string(_T("내 PC\\연구소문서2(\\\\\\192.168\\\\1.103) (X:)"), dq, _T("\\"));
 	for (int i = 0; i < dq.size(); i++)
 	{
 		TRACE(_T("token[%d] = %s\n"), i, dq[i]);
 	}
+	*/
 
-	/*
 	m_message.create(this, _T("Title Text"), IDR_MAINFRAME, false);
-	m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
-	m_message.use_typed_title_back_color();
+	//m_message.set_color_theme(CSCColorTheme::color_theme_linkmemine);
+	//m_message.use_typed_title_back_color();
 	CString test_msg = _T("Test MessageBox\r\nNext Line");
 	m_edit_message.SetWindowText(test_msg);
 
@@ -133,7 +134,6 @@ BOOL CTestSCMessageBoxDlg::OnInitDialog()
 	//int res = m_message.DoModal(_T("Test MessageBox"), MB_OKCANCEL);
 	//int res = m_message.DoModal(_T("Test MessageBox"), MB_YESNOCANCEL);
 	//TRACE(_T("res = %d\n"), res);
-	*/
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
